@@ -19,7 +19,7 @@
     <form id="todoForm" class="pure-form" style="display: none; text-align: center">
         <fieldset>
             <input id="whatText" class="pure-input-rounded pure-input-2-3" placeholder="Your new TODO">
-            <button id="addTodo" class="pure-button pure-button-primary">+</button>
+            <button id="addToDo" class="pure-button pure-button-primary">+</button>
         </fieldset>
         <fieldset id="allTodos"></fieldset>
     </form>
@@ -35,7 +35,7 @@
       .then(processOkResponse)
       .then(todos => todos.forEach(createNewTodo));
 
-    document.getElementById('addTodo').addEventListener('click', (event) => {
+    document.getElementById('addToDo').addEventListener('click', (event) => {
       event.preventDefault();
       fetch(TODO_API_URL, {
         method: 'POST',
@@ -52,8 +52,8 @@
     });
 
     // TODO: remove
-    createNewTodo({ id: 1, text: 'have to learn', done: true });
-    createNewTodo({ id: 2, text: 'mock 2', done: false });
+    createNewTodo({ id: 1, text: 'task 1', done: true });
+    createNewTodo({ id: 2, text: 'task 2', done: false });
 
     function createNewTodo(todo) {
       const label = document.createElement('label');
