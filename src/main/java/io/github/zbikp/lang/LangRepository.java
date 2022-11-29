@@ -7,7 +7,7 @@ import java.util.Optional;
 
 public class LangRepository {
     //tworzymu Query zgodnie zdokumnetacja hiberata
-    List<Lang> findAll(){
+    public List<Lang> findAll(){
         var session = HibernateUtil.getSessionFactory().openSession();
         var transaction = session.beginTransaction();
         var result =session.createQuery("from Lang",Lang.class).list();

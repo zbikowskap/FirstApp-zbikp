@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Optional;
 
 @WebServlet(name = "Hello",urlPatterns = {"/api"})
 public class HelloServlet extends HttpServlet {
@@ -37,7 +38,13 @@ public class HelloServlet extends HttpServlet {
         logger.info("Got request with paramiters"+req.getParameterMap()+"got");
         var name = req.getParameter(NAME_PARAM);
         var lang = req.getParameter(LANG_PARAM);
-        resp.getWriter().write(service.prepareGreeting(name, lang));
-        //logger.info("Make request test");
+        Integer langId = null;
+
+        try {
+            langId = Integer.valueOf(lang);
+        } catch (NumberFormatException e) {
+            logger.warn("Non-numeric language id used: "+ lang);
+        }
+        resp.getWriter().write(service.prepareGreeting(name, langId));
     }
 }
